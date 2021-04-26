@@ -1,0 +1,20 @@
+TODO for APP
+
+Think of other possible pages
+	News Page for each state?
+	
+
+Come up with UI for indivdual states
+	Camera and local picture storgae
+	Image
+
+List Page	
+	sort/filter
+
+Data storage for saving data of visited states
+	Hive DataBase (local)
+	Firebase (cloud)
+
+
+Do Icons for all states
+
