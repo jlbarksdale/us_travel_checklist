@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:us_travel_checklist/util/database.dart';
-import 'package:us_travel_checklist/util/styles.dart';
 import 'package:us_travel_checklist/util/us_states.dart';
 
 class States extends ChangeNotifier {
