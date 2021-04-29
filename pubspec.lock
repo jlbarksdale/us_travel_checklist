@@ -270,6 +270,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  icon_font_generator:
+    dependency: "direct main"
+    description:
+      name: icon_font_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   io:
     dependency: transitive
     description:
@@ -452,6 +459,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  recase:
+    dependency: transitive
+    description:
+      name: recase
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
   shelf:
     dependency: transitive
     description:

@@ -7,50 +7,41 @@ import 'package:us_travel_checklist/screens/check_off_screen.dart';
 import 'package:us_travel_checklist/screens/state_data_screen.dart';
 import 'package:us_travel_checklist/util/styles.dart';
 
-Future<void> main() async {
-  //await Database().setup();
-  runApp(FutureBuilder(
-    future: Database().setup(),
-    builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-      if (snapshot.connectionState == ConnectionState.done) {
-        return ChangeNotifierProvider<States>(
-          create: (context) => States(),
-          child: MyApp(),
-        );
-      } else {
-        return MaterialApp(
-          home: Loading(),
-        );
-      }
-    },
-  ));
+void main() {
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData.light().copyWith(
-        primaryColor: primaryColor,
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      routes: {
-        StatesListView.routeName: (context) => StatesListView(),
-        StateDataScreen.routeName: (context) => StateDataScreen(),
-      },
-      home: Scaffold(
-        appBar: AppBar(
-            title: Text(
-              'Check off List',
-              style: TextStyle(color: Colors.white),
-            ),
-            backgroundColor: primaryColor),
-        body: SafeArea(
-          child: StatesListView(),
-        ),
-      ),
-    );
+    return FutureBuilder(
+        // This Future is the local database setup
+        future: Database().setup(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          //Once database is loaded run app
+          if (snapshot.connectionState == ConnectionState.done) {
+            return ChangeNotifierProvider<States>(
+              create: (context) => States(),
+              child: MaterialApp(
+                title: 'US Check Off',
+                theme: ThemeData.light().copyWith(
+                  primaryColor: primaryColor,
+                  scaffoldBackgroundColor: Colors.white,
+                ),
+                routes: {
+                  StatesListView.routeName: (context) => StatesListView(),
+                  StateDataScreen.routeName: (context) => StateDataScreen(),
+                },
+                home: StatesListView(),
+              ),
+            );
+          }
+          // show loading screen until all data is loaded
+          else {
+            return MaterialApp(
+              home: Loading(),
+            );
+          }
+        });
   }
 }

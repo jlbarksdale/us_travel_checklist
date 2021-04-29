@@ -10,61 +10,62 @@ class StatesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      // TextField(
-      //   decoration: InputDecoration(
-      //       alignLabelWithHint: true,
-      //       labelText: 'Search',
-      //       labelStyle: TextStyle(
-      //         color: Colors.white,
-      //       )),
-      //   textAlign: TextAlign.center,
-      //   cursorHeight: 30.0,
-      //   cursorColor: Colors.white,
-      // ),
-      Expanded(
-        child: ListView.separated(
-          separatorBuilder: (context, index) => Divider(color: primaryColor),
-          itemCount: US_STATES.length,
-          itemBuilder: (context, index) {
-            return Consumer<States>(
-              builder: (BuildContext context, states, Widget? child) {
-                String stateName = states.getStateName(index);
-                IconData stateIconData = states.getStateIcon(index);
-                bool stateVisistedValue = states.getVisitedValue(index);
-                return ListTile(
-                  title: Text(
-                    stateName,
-                    style: TextStyle(color: primaryColor),
-                  ),
-                  leading: Icon(
-                    stateIconData,
-                    size: 40.0,
-                    color: accentColor,
-                  ),
-                  trailing: Checkbox(
-                    activeColor: primaryColor,
-                    checkColor: Colors.white,
-                    value: stateVisistedValue,
-                    onChanged: (value) {
-                      Provider.of<States>(context, listen: false)
-                          .setVisited(index);
-                    },
-                  ),
-                  onTap: () {
-                    print('Should Go to indivdual state screen');
-                    //TODO: Design Screen for indivdual States
-                    Navigator.pushNamed(context, StateDataScreen.routeName,
-                        arguments: StateDataScreenArguments(
-                            states.getStateName(index), stateIconData));
+    return Scaffold(
+      appBar: AppBar(
+          brightness: Brightness.light,
+          title: Text(
+            'Check off List',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: primaryColor),
+      body: SafeArea(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Expanded(
+            child: ListView.separated(
+              separatorBuilder: (context, index) =>
+                  Divider(color: primaryColor),
+              itemCount: US_STATES.length,
+              itemBuilder: (context, index) {
+                return Consumer<States>(
+                  builder: (BuildContext context, states, Widget? child) {
+                    String stateName = states.getStateName(index);
+                    IconData stateIconData = states.getStateIcon(index);
+                    bool stateVisistedValue = states.getVisitedValue(index);
+                    return ListTile(
+                      title: Text(
+                        stateName,
+                        style: TextStyle(color: primaryColor),
+                      ),
+                      leading: Icon(
+                        stateIconData,
+                        size: 40.0,
+                        color: accentColor,
+                      ),
+                      trailing: Checkbox(
+                        activeColor: primaryColor,
+                        checkColor: Colors.white,
+                        value: stateVisistedValue,
+                        onChanged: (value) {
+                          Provider.of<States>(context, listen: false)
+                              .setVisited(index);
+                        },
+                      ),
+                      onTap: () {
+                        print('Should Go to indivdual state screen');
+                        //TODO: Design Screen for indivdual States
+                        // Navigator.pushNamed(context, StateDataScreen.routeName,
+                        //     arguments: StateDataScreenArguments(
+                        //         states.getStateName(index), stateIconData));
+                      },
+                    ); //,
+                    //);
                   },
-                ); //,
-                //);
+                );
               },
-            );
-          },
-        ),
+            ),
+          ),
+        ]),
       ),
-    ]);
+    );
   }
 }
