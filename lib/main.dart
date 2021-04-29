@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:us_travel_checklist/screens/loading_screen.dart';
 import 'package:us_travel_checklist/util/database.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
               create: (context) => States(),
               child: MaterialApp(
                 title: 'US Check Off',
-                theme: ThemeData.light().copyWith(
+                theme: ThemeData.dark().copyWith(
                   primaryColor: primaryColor,
                   scaffoldBackgroundColor: Colors.white,
                 ),

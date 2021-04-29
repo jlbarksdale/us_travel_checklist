@@ -12,7 +12,6 @@ class StatesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          brightness: Brightness.light,
           title: Text(
             'Check off List',
             style: TextStyle(color: Colors.white),
